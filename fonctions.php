@@ -137,4 +137,19 @@ LISTE
 
 */
 
+Flight::route('/liste', function(){
+
+    $db = Flight::get('db');
+    $albums=$db->query('select id,nomgroupe,departement,annee,presentation,typescene,stylemusicale from candidature');
+    $liste=$albums->fetchAll();
+
+    $data = array(
+        "titre" => "Liste des candidatures",
+        "liste" => $liste
+    );
+
+    Flight::render('liste.tpl', $data);
+
+});
+
 ?>
