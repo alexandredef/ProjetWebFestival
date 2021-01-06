@@ -122,9 +122,9 @@
             </p>
             <p>
                 <label for="fichierMP3">3 fichier au format MP3</label>
-                <input type="file" name="producteur" value="{$producteur|escape|default:''}">
-                <input type="file" name="producteur" value="{$producteur|escape|default:''}">
-                <input type="file" name="producteur" value="{$producteur|escape|default:''}">
+				<input type="file" id="fichiermp3" name="fichiermp3_1" accept=".mp3,audio/*">
+				<input type="file" id="fichiermp3" name="fichiermp3_2" accept=".mp3,audio/*">
+				<input type="file" id="fichiermp3" name="fichiermp3_3" accept=".mp3,audio/*">
                 {$messages.producteur|default:''}
             </p>
             <p>
