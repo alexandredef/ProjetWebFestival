@@ -1,3 +1,4 @@
+<img id="logo" src="images/logo.png"/>
 <?php
 session_start();
 
@@ -28,3 +29,27 @@ require 'fonctions.php';
 Flight::start();
 
 ?>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+body {
+    background-image: url("images/wallpaper.png");
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+form {
+    background-color: #c9ced4;
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 175px;
+    text-align: center;
+    border: 4mm ridge rgba(74, 63, 171, .6);
+}
+
+#logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
