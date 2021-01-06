@@ -27,6 +27,9 @@
             <p>{$ficheTechnique}</p>
 			*}
 			<p>{$liste[0]}</p>
+			 <audio controls>
+				<source src="{liste[21]}" type="audio/mpeg">
+			</audio>  
             <p>{$liste[1]}</p>
             <p>{$liste[5]}</p>
             <p>{$liste[2]}</p>
