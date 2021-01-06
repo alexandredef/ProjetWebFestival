@@ -97,12 +97,12 @@
             </p>
             <div>
                 <h2>Membres du groupes</h2>
-                <label for="membres">Membres du groupe</label>
-                <textarea name="membres" value="{$membres|escape|default:''}">
+                <label for="membres">Membres du groupe, séparés par des points-virgules</label>
+                <textarea placeholder="Patrick; Marcel; Jérome; Xavier" name="membres" value="{$membres|escape|default:''}">
                 {$messages.membres|default:''}
 
-                <label for="roles_membres">Membres du groupe</label>
-                <textarea name="roles_membres" value="{$roles_membres|escape|default:''}">
+                <label for="roles_membres">Roles des membres du groupe, séparés des points virgules, suivant le même ordre</label>
+                <textarea placeholder="Guitariste; Batteur; Chanteur; Pianiste" name="roles_membres" value="{$roles_membres|escape|default:''}">
                 {$messages.roles_membres|default:''}
             </div>
             <p>
@@ -122,9 +122,9 @@
             </p>
             <p>
                 <label for="fichierMP3">3 fichier au format MP3</label>
-                <input type="file" name="producteur" value="{$producteur|escape|default:''}">
-                <input type="file" name="producteur" value="{$producteur|escape|default:''}">
-                <input type="file" name="producteur" value="{$producteur|escape|default:''}">
+				<input type="file" id="fichiermp3" name="fichiermp3_1" accept=".mp3,audio/*">
+				<input type="file" id="fichiermp3" name="fichiermp3_2" accept=".mp3,audio/*">
+				<input type="file" id="fichiermp3" name="fichiermp3_3" accept=".mp3,audio/*">
                 {$messages.producteur|default:''}
             </p>
             <p>

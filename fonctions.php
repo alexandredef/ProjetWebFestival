@@ -330,9 +330,9 @@ Flight::route('POST /candidature', function(){
 
 LISTE
 
-
 */
 
+// Fonction de la route /liste avec la méthode GET
 Flight::route('GET /liste', function(){
     if (isset($_SESSION['utilisateur'])){
     $db = Flight::get('db');
@@ -358,6 +358,7 @@ DECONNEXION
 
 */
 
+// Fonction de la route /logout avec la méthode GET
 Flight::route('GET /logout', function(){
     // On retire le nom de l'utilisateur de la variable globale _SESSION afin de mettre fin à sa session, puis on redirige vers la route / désignant la page d'accueil
     unset($_SESSION['utilisateur']);
@@ -371,8 +372,15 @@ DETAIL CANDIDATURE
 
 */
 
+// Fonction de la route /detail/@if/@name avec la méthode GET
 Flight::route('GET /detail/@id/@name', function() {
-	
+    $template = 'detail.tpl';
+    $db = Flight::get('db');
+    $album=$db->prepare('select * from candidature where nomGroupe like :nom');
+    $album->execute(array(':nom' => $secondArg));
+    $liste = $album->fetchall();
+    $data = array('titre' => 'Detail', 'route' => "$premierArg/$secondArg", 'liste' => $liste);
+    Flight::render($template, $data);
 });
 
 /*
@@ -381,6 +389,7 @@ SUCCES
 
 */
 
+// Fonction de la route /succes avec la méthode GET
 Flight::route('GET /success', function(){
    
     Flight::render('success.tpl', NULL);

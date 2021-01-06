@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 06 jan. 2021 à 15:25
+-- Généré le :  mer. 06 jan. 2021 à 20:16
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -34,7 +34,12 @@ CREATE TABLE IF NOT EXISTS `candidature` (
   `nomgroupe` varchar(50) NOT NULL,
   `departement` varchar(50) NOT NULL,
   `typescene` int(10) NOT NULL,
-  `representantgroupe` int(10) NOT NULL,
+  `representantgroupenom` varchar(150) NOT NULL,
+  `representanttgroupeprenom` varchar(150) NOT NULL,
+  `representanttgroupeadresse` varchar(150) NOT NULL,
+  `representanttgroupecodepostal` int(10) NOT NULL,
+  `representantGroupeEmail` varchar(150) NOT NULL,
+  `representantGroupeTelephone` int(10) NOT NULL,
   `stylemusicale` varchar(50) NOT NULL,
   `annee` int(4) NOT NULL,
   `presentation` varchar(500) NOT NULL,
@@ -219,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`nom`, `email`, `motdepasse`, `estadmin`) VALUES
-('admin', 'admin@admin.admin', '$2y$10$QgJbaMTsf8g0x1pfQXnmEe3lE6Si5DmVtdOTo8qDcTf3ilIuZ/ITW', 1);
+('admin', 'admin@admin.admin', '$2y$10$QgJbaMTsf8g0x1pfQXnmEe3lE6Si5DmVtdOTo8qDcTf3ilIuZ/ITW', 1),
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
