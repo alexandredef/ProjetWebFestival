@@ -188,6 +188,17 @@ CREATE TABLE IF NOT EXISTS `scene` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `scene`
+--
+
+INSERT INTO `utilisateur` (`id`, `nom`) VALUES
+(1, 'Tribute');
+INSERT INTO `utilisateur` (`id`, `nom`) VALUES
+(2, 'Acoustique-Folk');
+INSERT INTO `utilisateur` (`id`, `nom`) VALUES
+(3, 'Amplifié-Rock');
+
 -- --------------------------------------------------------
 
 --
@@ -208,8 +219,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`nom`, `email`, `motdepasse`, `estadmin`) VALUES
-('admin', 'admin@admin.admin', '$2y$10$QgJbaMTsf8g0x1pfQXnmEe3lE6Si5DmVtdOTo8qDcTf3ilIuZ/ITW', 1),
-('iojjiooijio', 'iojiooj@jikjj.lol', '$2y$10$10ruBWSf8lKrHXyZsnmPYeJ8BDZCu5ujv.e0Lz2EDbqH45zxe1s0.', 0);
+('admin', 'admin@admin.admin', '$2y$10$QgJbaMTsf8g0x1pfQXnmEe3lE6Si5DmVtdOTo8qDcTf3ilIuZ/ITW', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
