@@ -9,7 +9,8 @@
         <h1>{$titre}</h1>
         <p><img src=''></p>
         <section>
-            <p>{$nomGroupe}</p>
+			{*
+		    <p>{$liste[0]}</p>
             <p>{$fichierMP3}</p>
             <p>{$fichierMP3}</p>
             <p>{$fichierMP3}</p>
@@ -24,6 +25,19 @@
             <p>Dossier</p>
             <p>{$documentSACEM}</p>
             <p>{$ficheTechnique}</p>
+			*}
+			<p>{$liste[0]}</p>
+            <p>{$liste[1]}</p>
+            <p>{$liste[5]}</p>
+            <p>{$liste[2]}</p>
+            <p>{$liste[9]}</p>
+            <p>{$liste[14]}</p>
+            <p>{$liste[15]}</p>
+            <p>{$liste[11]}</p>
+            <p>{$liste[12]}</p>
+            <p>Dossier</p>
+            <p>{$liste[25]}</p>
+            <p>{$liste[24]}</p>
         </section>
     </body>
 </html> 
