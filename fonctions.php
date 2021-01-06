@@ -4,6 +4,29 @@ include 'includes/pdo.php';
 
 /*
 
+ACCUEIL
+
+*/
+
+Flight::route('/', function(){
+    // On vérifie si l'utilisateur est connecté,
+    if (isset($_SESSION['utilisateur'])){
+        // Si c'est le cas alors on affiche l'adresse email et le nom du compte dans le template profil.tpl en les important de la base de données
+        $db = Flight::get('db');
+        $st = $db->prepare('select nom, email from utilisateur where nom = ?');
+        $st->execute(array($_SESSION['utilisateur']));
+        $info_utilisateur = $st->fetch();
+        Flight::render("index.tpl",array("titre"=>"Accueil", "nom"=>$info_utilisateur[0], "email"=>$info_utilisateur[1]));
+    }
+    else{
+        // Si ce n'est pas le cas alors on redirige vers la route /login
+        Flight::redirect('/connexion');
+    }
+});
+
+
+/*
+
 CONNEXION
 
 
@@ -129,6 +152,29 @@ CANDIDATURE
 
 */
 
+Flight::route('GET /candidature', function(){
+    // On vérifie si l'utilisateur est connecté,
+        if (isset($_SESSION['utilisateur'])){
+            $db = Flight::get('db');
+            $departement=$db->query('select * from departement');
+            $liste=$departement->fetchAll();
+        
+            $data = array(
+                "departements" => $liste
+            );
+
+        Flight::render("candidature.tpl",$data);
+    } else{
+        // Si ce n'est pas le cas alors on redirige vers la route /login
+        Flight::redirect('/connexion');
+    }
+});
+
+
+Flight::route('POST /candidature', function(){
+    
+
+});
 
 /*
 
@@ -137,19 +183,61 @@ LISTE
 
 */
 
-Flight::route('/liste', function(){
-
+Flight::route('GET /liste', function(){
+    if (isset($_SESSION['utilisateur'])){
     $db = Flight::get('db');
-    $albums=$db->query('select id,nomgroupe,departement,annee,presentation,typescene,stylemusicale from candidature');
-    $liste=$albums->fetchAll();
+    $candidatures=$db->query('select id,nomgroupe,departement,annee,presentation,typescene,stylemusicale from candidature');
+    $liste=$candidatures->fetchAll();
 
     $data = array(
         "titre" => "Liste des candidatures",
         "liste" => $liste
     );
 
-    Flight::render('liste.tpl', $data);
+    Flight::render('liste.tpl', NULL);
+} else {
+Flight::redirect('connexion');
+}
+
 
 });
 
+/*
+
+DECONNEXION
+
+*/
+
+Flight::route('GET /logout', function(){
+    // On retire le nom de l'utilisateur de la variable globale _SESSION afin de mettre fin à sa session, puis on redirige vers la route / désignant la page d'accueil
+    unset($_SESSION['utilisateur']);
+    Flight::redirect('/');
+});
+
+
+/*
+
+DETAIL CANDIDATURE
+
+*/
+
+Flight::route('GET /detail/@id', function() {
+	
+	
+});
+
+/*
+
+SUCCES
+
+*/
+
+Flight::route('GET /success', function(){
+   
+    Flight::render('success.tpl', NULL);
+});
+
+
+
 ?>
+
