@@ -11,7 +11,7 @@
                 {$messages.nomGroupe|default:''}
             </p>
             <p>
-                <label for="departement">Departemetn</label>
+                <label for="departement">Departement</label>
                 <select>
                 {foreach $liste as $ligne}
                     <option>{$departement}</option>
@@ -122,6 +122,6 @@
                 <input type="submit" name="valider">
             </p>
         </form>
-        <p><a href=".">Retourner à la page principale</a></p>
+        <p><a href="/">Retourner à la page principale</a></p>
     </body>
 </html> 

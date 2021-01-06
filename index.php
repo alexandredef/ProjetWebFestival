@@ -1,6 +1,9 @@
 <?php
+session_start();
+
 require 'includes/flight/Flight.php';
 require 'includes/Smarty/Smarty.class.php';
+
 
 $smarty = new Smarty();
 
