@@ -172,73 +172,7 @@ Flight::route('GET /candidature', function(){
 
 
 Flight::route('POST /candidature', function(){
-    $messages_erreur = array();
-
-    if(empty($_POST['nom'])){
-        $messages_erreur['nom'] = "Le nom du groupe est obligatoire";
-    }
-
-    if(empty($_POST['departement'])) {
-        $messages_erreur['departement'] = "Le departement est obligatoire";
-    }
-
-    if(empty($_POST['typescene'])) {
-        $messages_erreur['typescene'] = "Le type de scene est obligatoire";
-    }
-
-    if(empty($_POST['stylemusical'])) {
-        $messages_erreur['stylemusical'] = "Le style musical est obligatoire";
-    }
-
-    if(empty($_POST['anneeCreation'])) {
-        $messages_erreur['anneeCration'] = "Annee creation est obligatoire";
-    }
-
-    if(empty($_POST['membres'])) {
-        $messages_erreur['membres'] = "vous devez presenter les membres";
-    }
-
-    if(empty($_POST['photoGroupe'])) {
-        $messages_erreur['photoGroupe'] = "Se presenter est obligatoire";
-    }
-
-    if(empty($_POST['siteoupage'])) {
-        $messages_erreur['siteoupage'] = "Une presence s ur Internet est obligatoire";
-    }
-
-    if(empty($_POST['DossierPresse'])) {
-        $messages_erreur['DossierPresse'] = "Dossier Presse obligatoire";
-    }
-
-    if(empty($_POST['documentSACEM'])) {
-        $messages_erreur['documentSACEM'] = "Document SACEM obligatoire";
-    }
-
-    if(empty($_POST['fichetechnique'])) {
-        $messages_erreur['fichetechnique'] = "Fiche technique obligatoire";
-    }
-
-    if(empty($_POST['adresseSoundcloud']) || empty($_POST['adresseYoutube']))
-    {
-        $adresseSoundcloud = "";
-        $adresseYoutube = "";
-    }
-    else
-    {
-        $adresseSoundcloud = $_POST['adresseSoundCloud'];
-        $adresseYoutube = $_POST['adresseYoutube'];
-    }
-
-    if(!empty($messages_erreur)) {
-        Flight::view()->assign("messages", $messages_erreur);
-        Flight::view()->assign($_POST);
-        Flight::render("inscription.tpl", NULL);
-    } else {
-        $get_db = Flight::get('db');
-        $st = $get_db->prepare('INSERT INTO candidature VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
-        $st->execute($_POST['nom'], $_POST['departement'], $_POST['typescene'], $_POST['stylemusical'],$_POST['annee'],$_POST['presentation'],$_POST['experience'],$_POST['siteinternet'],  $_POST['membres'], $adressesoundcloud, $adresseyoutube, $_POST['documentsacem'], $_POST['photosgroupe'], $_POST['fichiermp3']);
-        Flight::redirect('/success');
-    }
+    
 
 });
 
@@ -286,6 +220,11 @@ Flight::route('GET /logout', function(){
 DETAIL CANDIDATURE
 
 */
+
+Flight::route('GET /detail/@id', function() {
+	
+	
+});
 
 /*
 
