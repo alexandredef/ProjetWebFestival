@@ -154,19 +154,94 @@ CANDIDATURE
 
 Flight::route('GET /candidature', function(){
     // On vérifie si l'utilisateur est connecté,
-    if (isset($_SESSION['utilisateur'])){
+        if (isset($_SESSION['utilisateur'])){
+            $db = Flight::get('db');
+            $departement=$db->query('select * from departement');
+            $liste=$departement->fetchAll();
+        
+            $data = array(
+                "departements" => $liste
+            );
 
-
-        Flight::render("candidature.tpl",NULL);
-    }
-    else{
+        Flight::render("candidature.tpl",$data);
+    } else{
         // Si ce n'est pas le cas alors on redirige vers la route /login
         Flight::redirect('/connexion');
     }
 });
 
+
 Flight::route('POST /candidature', function(){
+    $messages_erreur = array();
+
+    if(empty($_POST['nom'])){
+        $messages_erreur['nom'] = "Le nom du groupe est obligatoire";
+    }
+
+    if(empty($_POST['departement'])) {
+        $messages_erreur['departement'] = "Le departement est obligatoire";
+    }
+
+    if(empty($_POST['typescene'])) {
+        $messages_erreur['typescene'] = "Le type de scene est obligatoire";
+    }
+
+    if(empty($_POST['stylemusical'])) {
+        $messages_erreur['stylemusical'] = "Le style musical est obligatoire";
+    }
+
+    if(empty($_POST['anneeCreation'])) {
+        $messages_erreur['anneeCration'] = "Annee creation est obligatoire";
+    }
+
+    if(empty($_POST['membres'])) {
+        $messages_erreur['membres'] = "vous devez presenter les membres";
+    }
+
+    if(empty($_POST['photoGroupe'])) {
+        $messages_erreur['photoGroupe'] = "Se presenter est obligatoire";
+    }
+
+    if(empty($_POST['siteoupage'])) {
+        $messages_erreur['siteoupage'] = "Une presence s ur Internet est obligatoire";
+    }
+
+    if(empty($_POST['DossierPresse'])) {
+        $messages_erreur['DossierPresse'] = "Dossier Presse obligatoire";
+    }
+
+    if(empty($_POST['documentSACEM'])) {
+        $messages_erreur['documentSACEM'] = "Document SACEM obligatoire";
+    }
+
+    if(empty($_POST['fichetechnique'])) {
+        $messages_erreur['fichetechnique'] = "Fiche technique obligatoire";
+    }
+
+    if(empty($_POST['adresseSoundcloud']) || empty($_POST['adresseYoutube']))
+    {
+        $adresseSoundcloud = "";
+        $adresseYoutube = "";
+    }
+    else
+    {
+        $adresseSoundcloud = $_POST['adresseSoundCloud'];
+        $adresseYoutube = $_POST['adresseYoutube'];
+    }
+
+    if(!empty($messages_erreur)) {
+        Flight::view()->assign("messages", $messages_erreur);
+        Flight::view()->assign($_POST);
+        Flight::render("inscription.tpl", NULL);
+    } else {
+        $get_db = Flight::get('db');
+        $st = $get_db->prepare('INSERT INTO candidature VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+        $st->execute($_POST['nom'], $_POST['departement'], $_POST['typescene'], $_POST['stylemusical'],$_POST['annee'],$_POST['presentation'],$_POST['experience'],$_POST['siteinternet'],  $_POST['membres'], $adressesoundcloud, $adresseyoutube, $_POST['documentsacem'], $_POST['photosgroupe'], $_POST['fichiermp3']);
+        Flight::redirect('/success');
+    }
+
 });
+
 /*
 
 LISTE
@@ -174,7 +249,8 @@ LISTE
 
 */
 
-Flight::route('/liste', function(){
+Flight::route('GET /liste', function(){
+    if (isset($_SESSION['utilisateur'])){
     $db = Flight::get('db');
     $candidatures=$db->query('select id,nomgroupe,departement,annee,presentation,typescene,stylemusicale from candidature');
     $liste=$candidatures->fetchAll();
@@ -184,10 +260,19 @@ Flight::route('/liste', function(){
         "liste" => $liste
     );
 
-    Flight::render('liste.tpl', $data);
+    Flight::render('liste.tpl', NULL);
+} else {
+Flight::redirect('connexion');
+}
 
 
 });
+
+/*
+
+DECONNEXION
+
+*/
 
 Flight::route('GET /logout', function(){
     // On retire le nom de l'utilisateur de la variable globale _SESSION afin de mettre fin à sa session, puis on redirige vers la route / désignant la page d'accueil
@@ -195,4 +280,25 @@ Flight::route('GET /logout', function(){
     Flight::redirect('/');
 });
 
+
+/*
+
+DETAIL CANDIDATURE
+
+*/
+
+/*
+
+SUCCES
+
+*/
+
+Flight::route('GET /success', function(){
+   
+    Flight::render('success.tpl', NULL);
+});
+
+
+
 ?>
+
