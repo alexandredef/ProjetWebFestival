@@ -4,6 +4,7 @@
         <title>Candidature</title>
     </head>
     <body>
+        <h1>Candidature</h1>
         <form action="candidature" method="POST">
             <p>
                 <label for="nomGroupe">Nom</label>
@@ -28,11 +29,32 @@
                 </select>
                 {$messages.typeScene|default:''}
             </p>
-            <p>
-                <label for="representantGroupe">Informations sur le représentant du groupe</label>
-                <input type="text" name="representantGroupe" value="{$representantGroupe|escape|default:''}">
-                {$messages.representantGroupe|default:''}
-            </p>
+            <div>
+                <h2>Représantant du groupe</h2>
+                <label for="representantGroupeNom">Informations sur le représentant du groupe</label>
+                <input type="text" name="representantGroupeNom" value="{$representantGroupeNom|escape|default:''}">
+                {$messages.representantGroupeNom|default:''}
+
+                <label for="representantGroupePrenom">Informations sur le représentant du groupe</label>
+                <input type="text" name="representantGroupePrenom" value="{$representantGroupePrenom|escape|default:''}">
+                {$messages.representantGroupePrenom|default:''}
+
+                <label for="representantGroupeAdresse">Informations sur le représentant du groupe</label>
+                <input type="text" name="representantGroupeAdresse" value="{$representantGroupeAdresse|escape|default:''}">
+                {$messages.representantGroupeAdresse|default:''}
+
+                <label for="representantGroupeCodePostal">Informations sur le représentant du groupe</label>
+                <input type="text" name="representantGroupeCodePostal" value="{$representantGroupeCodePostal|escape|default:''}">
+                {$messages.representantGroupeCodePostal|default:''}
+
+                <label for="representantGroupeEmail">Informations sur le représentant du groupe</label>
+                <input type="text" name="representantGroupeEmail" value="{$representantGroupeEmail|escape|default:''}">
+                {$messages.representantGroupeEmail|default:''}
+
+                <label for="representantGroupeTelephone">Informations sur le représentant du groupe</label>
+                <input type="text" name="representantGroupeTelephone" value="{$representantGroupeTelephone|escape|default:''}">
+                {$messages.representantGroupeTelephone|default:''}
+            </div>
             <p>
                 <label for="styleMusical">Style musical</label>
                 <input type="text" name="styleMusical" value="{$styleMusical|escape|default:''}">
@@ -60,62 +82,69 @@
             </p>
             <p>
                 <label for="siteOuPage">Lien vers site ou page internet du groupe</label>
-                <textarea name="siteOuPage" value="{$siteOuPage|escape|default:''}">
+                <input type="url" name="siteOuPage" value="{$siteOuPage|escape|default:''}">
                 {$messages.siteOuPage|default:''}
             </p>
             <p>
                 <label for="adresseSoundcloud">Lien vers la page Soundcloud du groupe</label>
-                <textarea name="adresseSoundcloud" value="{$adresseSoundcloud|escape|default:''}">
+                <input type="url" name="adresseSoundcloud" value="{$adresseSoundcloud|escape|default:''}">
                 {$messages.adresseSoundcloud|default:''}
             </p>
             <p>
                 <label for="adresseYoutube">Lien vers la chaîne Youtube du groupe</label>
-                <textarea name="adresseYoutube" value="{$adresseYoutube|escape|default:''}">
+                <input type="url" name="adresseYoutube" value="{$adresseYoutube|escape|default:''}">
                 {$messages.adresseYoutube|default:''}
             </p>
-            <p>
-                <label for="membres">Lien vers site ou page internet du groupe</label>
-                <textarea name="siteOuPage" value="{$siteOuPage|escape|default:''}">
-                {$messages.siteOuPage|default:''}
-            </p>
+            <div>
+                <h2>Membres du groupes</h2>
+                <label for="membres">Membres du groupe</label>
+                <textarea name="membres" value="{$membres|escape|default:''}">
+                {$messages.membres|default:''}
+
+                <label for="roles_membres">Membres du groupe</label>
+                <textarea name="roles_membres" value="{$roles_membres|escape|default:''}">
+                {$messages.roles_membres|default:''}
+            </div>
             <p>
                 <label for="statutAssociatif">Statut associatif ?</label>
-                <textarea name="statutAssociatif" value="{$statutAssociatif|escape|default:''}">
+                <input type="checkbox" name="statutAssociatif" value="{$statutAssociatif|escape|default:''}">
                 {$messages.statutAssociatif|default:''}
             </p>
             <p>
                 <label for="inscritSACEM">Inscrit à la SACEM ?</label>
-                <textarea name="inscritSACEM" value="{$inscritSACEM|escape|default:''}">
+                <input type="checkbox" name="inscritSACEM" value="{$inscritSACEM|escape|default:''}">
                 {$messages.inscritSACEM|default:''}
             </p>
             <p>
-                <label for="producteur">producteur</label>
-                <textarea name="producteur" value="{$producteur|escape|default:''}">
+                <label for="producteur">Producteur ?</label>
+                <input type="checkbox" name="producteur" value="{$producteur|escape|default:''}">
                 {$messages.producteur|default:''}
             </p>
             <p>
                 <label for="fichierMP3">3 fichier au format MP3</label>
-                <textarea name="producteur" value="{$producteur|escape|default:''}">
+                <input type="file" name="producteur" value="{$producteur|escape|default:''}">
+                <input type="file" name="producteur" value="{$producteur|escape|default:''}">
+                <input type="file" name="producteur" value="{$producteur|escape|default:''}">
                 {$messages.producteur|default:''}
             </p>
             <p>
                 <label for="DossierPresse">Dossier de presse au format PDF</label>
-                <textarea name="DossierPresse" value="{$DossierPresse|escape|default:''}">
+                <input type="text" accept=".pdf" name="DossierPresse" value="{$DossierPresse|escape|default:''}">
                 {$messages.DossierPresse|default:''}
             </p>
             <p>
-                <label for="photoGroupe">3 fichier au format MP3</label>
-                <textarea name="producteur" value="{$producteur|escape|default:''}">
+                <label for="photoGroupe">Photo du groupe</label>
+                <input type="file" accept="image/*" name="producteur" value="{$producteur|escape|default:''}">
                 {$messages.producteur|default:''}
             </p>
             <p>
                 <label for="ficheTechnique">Fiche Technique au format PDF</label>
-                <textarea name="ficheTechnique" value="{$ficheTechnique|escape|default:''}">
+                <input type="file" accept=".pdf" name="ficheTechnique" value="{$ficheTechnique|escape|default:''}">
                 {$messages.ficheTechnique|default:''}
             </p>
             <p>
                 <label for="documentSACEM">Document SACEM au format PDF</label>
-                <textarea name="documentSACEM" value="{$documentSACEM|escape|default:''}">
+                <input type="file" accept=".pdf" name="documentSACEM" value="{$documentSACEM|escape|default:''}">
                 {$messages.documentSACEM|default:''}
             </p>
             <p>
