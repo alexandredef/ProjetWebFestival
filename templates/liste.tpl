@@ -8,11 +8,20 @@
     <body>
         <h1>{$titre}</h1>
         <table>
-            <tr><th>Groupe</th><th>Departement</th><th>Style musicale</th><th>Description</th><th>Année</th><th>Scène</th></tr>
             {foreach $liste as $ligne}
-                <tr><td><a href='artiste/{$ligne[3]}/{$ligne[6]}'>{$ligne[6]}</a></td><td>{$ligne[1]}</td><td>{$ligne[4]}</td></tr>
+                <tr>
+                    <td>{$id}</td>
+                    <td><a href="/detail/{$ligne[]}/{$ligne[]}"</td>
+                    <td>{$nom}</td>
+                    <td>{$departement}</td>
+                    <td>{$adresse}</td>
+                    <td>{$scene}</td>
+                    <td>{$style}</td>
+                    <td>{$annee}</td>
+                    <td>{$description}</td>
+                    <td>{$experience}</td>
+                </tr>
             {/foreach}
         </table>
-        …
     </body>
 </html> 
